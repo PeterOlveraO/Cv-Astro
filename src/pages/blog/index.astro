@@ -13,12 +13,27 @@ const posts = (await getCollection('blog')).sort(
 ---
 
 <!doctype html>
-<html lang="en">
+<html lang="es">
 	<head>
-		<BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
+		<BaseHead title={"Proyectos | " + SITE_TITLE} description={"Portafolio de proyectos de desarrollo web"} />
 		<style>
 			main {
 				width: 960px;
+				margin: 0 auto;
+			}
+			.page-title {
+				margin-bottom: 2rem;
+				text-align: center;
+				color: var(--text-dark);
+			}
+			.page-description {
+				margin-bottom: 3rem;
+				text-align: center;
+				color: var(--text-secondary);
+				font-size: 1.2rem;
+				max-width: 80%;
+				margin-left: auto;
+				margin-right: auto;
 			}
 			ul {
 				display: flex;
@@ -30,6 +45,15 @@ const posts = (await getCollection('blog')).sort(
 			}
 			ul li {
 				width: calc(50% - 1rem);
+				transition: transform 0.2s ease;
+				background: var(--surface-dark);
+				border-radius: 12px;
+				overflow: hidden;
+				border: 1px solid rgba(255, 255, 255, 0.1);
+			}
+			ul li:hover {
+				transform: translateY(-5px);
+				border-color: var(--accent);
 			}
 			ul li * {
 				text-decoration: none;
@@ -42,6 +66,8 @@ const posts = (await getCollection('blog')).sort(
 			}
 			ul li:first-child img {
 				width: 100%;
+				max-height: 400px;
+				object-fit: cover;
 			}
 			ul li:first-child .title {
 				font-size: 2.369rem;
@@ -52,22 +78,37 @@ const posts = (await getCollection('blog')).sort(
 			}
 			ul li a {
 				display: block;
+				padding: 1rem;
 			}
 			.title {
 				margin: 0;
-				color: rgb(var(--black));
+				color: var(--text-dark);
 				line-height: 1;
 			}
 			.date {
 				margin: 0;
-				color: rgb(var(--gray));
+				color: var(--text-secondary);
+			}
+			.tech-tags {
+				display: flex;
+				flex-wrap: wrap;
+				gap: 0.5rem;
+				margin-top: 0.5rem;
+			}
+			.tech-tag {
+				background-color: rgba(245, 100, 100, 0.2);
+				padding: 0.2rem 0.6rem;
+				border-radius: 4px;
+				font-size: 0.8rem;
+				color: var(--accent);
+				border: 1px solid rgba(245, 100, 100, 0.3);
 			}
 			ul li a:hover h4,
 			ul li a:hover .date {
-				color: rgb(var(--accent));
+				color: var(--accent);
 			}
 			ul a:hover img {
-				box-shadow: var(--box-shadow);
+				box-shadow: 0 10px 25px rgba(245, 100, 100, 0.3);
 			}
 			@media (max-width: 720px) {
 				ul {
@@ -90,6 +131,10 @@ const posts = (await getCollection('blog')).sort(
 		<Header />
 		<main>
 			<section>
+				<h1 class="page-title">Mis Proyectos</h1>
+				<p class="page-description">
+					Una selección de mis proyectos más destacados. Cada proyecto muestra distintas habilidades y tecnologías que manejo como desarrollador.
+				</p>
 				<ul>
 					{
 						posts.map((post) => (
@@ -98,10 +143,15 @@ const posts = (await getCollection('blog')).sort(
 									{post.data.heroImage && (
 										<Image width={720} height={360} src={post.data.heroImage} alt="" />
 									)}
-									<h4 class="title">{post.data.title}</h4>
+									<h2 class="title">{post.data.title}</h2>
 									<p class="date">
 										<FormattedDate date={post.data.pubDate} />
 									</p>
+									<div class="tech-tags">
+										<span class="tech-tag">HTML</span>
+										<span class="tech-tag">CSS</span>
+										<span class="tech-tag">JavaScript</span>
+									</div>
 								</a>
 							</li>
 						))
