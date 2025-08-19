@@ -1,0 +1,128 @@
+---
+// Componente Lightbox para visualizar diplomas a pantalla completa
+---
+
+<div id="diploma-lightbox" class="lightbox">
+  <div class="lightbox-content">
+    <span class="lightbox-close">&times;</span>
+    <img id="lightbox-image" src="" alt="Diploma a pantalla completa">
+    <div class="lightbox-caption">
+      <p id="lightbox-caption-text"></p>
+    </div>
+  </div>
+</div>
+
+<style>
+  .lightbox {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.9);
+    padding: 10px;
+  }
+
+  .lightbox-content {
+    position: relative;
+    margin: auto;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .lightbox-close {
+    position: absolute;
+    top: 15px;
+    right: 25px;
+    color: white;
+    font-size: 35px;
+    font-weight: bold;
+    cursor: pointer;
+    z-index: 1001;
+  }
+
+  #lightbox-image {
+    max-width: 90%;
+    max-height: 80vh;
+    object-fit: contain;
+    margin-bottom: 20px;
+  }
+
+  .lightbox-caption {
+    padding: 10px 20px;
+    color: white;
+    text-align: center;
+    max-width: 80%;
+  }
+
+  #lightbox-caption-text {
+    margin: 0;
+    font-size: 1.2rem;
+  }
+</style>
+
+<script>
+  // Función para mostrar el lightbox
+  function showLightbox(src, caption) {
+    const lightbox = document.getElementById('diploma-lightbox');
+    const lightboxImage = document.getElementById('lightbox-image');
+    const lightboxCaption = document.getElementById('lightbox-caption-text');
+    
+    if (lightbox && lightboxImage && lightboxCaption) {
+      lightboxImage.src = src;
+      lightboxCaption.textContent = caption || '';
+      lightbox.style.display = 'block';
+      
+      // Deshabilitar el scroll del body
+      document.body.style.overflow = 'hidden';
+    }
+  }
+
+  // Función para cerrar el lightbox
+  function closeLightbox() {
+    const lightbox = document.getElementById('diploma-lightbox');
+    if (lightbox) {
+      lightbox.style.display = 'none';
+      
+      // Habilitar de nuevo el scroll del body
+      document.body.style.overflow = 'auto';
+    }
+  }
+
+  // Añadir event listeners cuando el DOM está cargado
+  document.addEventListener('DOMContentLoaded', () => {
+    // Botón de cerrar
+    const closeButton = document.querySelector('.lightbox-close');
+    if (closeButton) {
+      closeButton.addEventListener('click', closeLightbox);
+    }
+
+    // Cerrar al hacer clic fuera de la imagen
+    const lightbox = document.getElementById('diploma-lightbox');
+    if (lightbox) {
+      lightbox.addEventListener('click', (e) => {
+        if (e.target === lightbox) {
+          closeLightbox();
+        }
+      });
+    }
+
+    // Tecla Escape para cerrar
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') {
+        closeLightbox();
+      }
+    });
+
+    // Exportar las funciones al objeto window para que sean accesibles desde otros componentes
+    window.showDiplomaLightbox = showLightbox;
+    window.closeDiplomaLightbox = closeLightbox;
+  });
+</script>

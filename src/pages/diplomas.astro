@@ -1,0 +1,125 @@
+---
+import BaseHead from '../components/BaseHead.astro';
+import Footer from '../components/Footer.astro';
+import Header from '../components/Header.astro';
+import DiplomaDisplay from '../components/DiplomaDisplay.astro';
+import DiplomaLightbox from '../components/DiplomaLightbox.astro';
+import { SITE_TITLE } from '../consts';
+
+// Listar los diplomas desde la carpeta public/diplomas
+const diplomaFiles = [
+	{
+		title: "Creacion de aplicaciones moviles y de escritorio con .NET MAUI",
+		imageUrl: "/diplomas/Diploma8.jpg"
+	},
+	{
+		title: "Programador (Orientado a objetos)",
+		imageUrl: "/diplomas/diploma1.jpg"
+	},
+	{
+		title: "Uso responsable de dispositivos electronicos",
+		imageUrl: "/diplomas/diploma2.jpg"
+	},
+	{
+		title: "Evaluador de experiencias de usuario  (UX)",
+		imageUrl: "/diplomas/diploma3.jpg"
+	},
+	{
+		title: "Programador en C#",
+		imageUrl: "/diplomas/diploma4.jpg"
+	},
+	{
+		title: "Paradigma de programacion  (Orientado a objetos)",
+		imageUrl: "/diplomas/diploma5.jpg"
+	},
+	{
+		title: "Diseñador de experiencias de usuario (UX)",
+		imageUrl: "/diplomas/diploma6.jpg"
+	},
+	{
+		title: "Desarrollador de interfaces graficas",
+		imageUrl: "/diplomas/diploma7.jpg"
+	}
+]
+---
+
+<!doctype html>
+<html lang="es">
+	<head>
+		<BaseHead title={"Diplomas | " + SITE_TITLE} description={"Certificaciones y diplomas profesionales"} />
+	</head>
+	<body>
+		<Header />
+		<main>
+			<section class="diplomas-section">				<h1>Mis Certificaciones y Diplomas</h1>
+				<p class="section-description">
+					Estas son las certificaciones y diplomas que he obtenido a lo largo de mi carrera profesional.
+					
+				</p>
+				
+				<div class="diplomas-grid">
+					{diplomaFiles.map((diploma) => (
+						<DiplomaDisplay 
+							title={diploma.title}
+							imageUrl={diploma.imageUrl}
+						/>
+					))}
+				</div>
+			</section>		</main>
+		<Footer />
+		<DiplomaLightbox />
+	</body>
+</html>
+
+<style>
+	.diplomas-section {
+		margin-bottom: 3rem;
+	}
+
+	.section-description {
+		text-align: center;
+		margin-bottom: 2.5rem;
+		color: #666;
+		max-width: 80%;
+		margin-left: auto;
+		margin-right: auto;
+	}
+	.diplomas-grid {
+		display: grid;
+		grid-template-columns: 1fr;
+		gap: 2rem;
+	}
+
+	@media (min-width: 640px) {
+		.diplomas-grid {
+			grid-template-columns: repeat(2, 1fr);
+		}
+	}
+
+	@media (min-width: 1024px) {
+		.diplomas-grid {
+			grid-template-columns: repeat(2, 1fr);
+		}
+	}	.diploma-card {
+		display: none; /* Ocultamos estos estilos ya que no los usamos */
+	}
+
+	.diploma-image {
+		display: none; /* Ocultamos estos estilos ya que no los usamos */
+	}
+
+	.diploma-info {
+		display: none; /* Ocultamos estos estilos ya que no los usamos */
+	}
+	.diploma-info h3 {
+		display: none; /* Ocultamos estos estilos ya que no los usamos */
+	}
+
+	.diploma-date, .diploma-institute {
+		display: none; /* Ocultamos estos estilos ya que no los usamos */
+	}
+
+	.diploma-description {
+		display: none; /* Ocultamos estos estilos ya que no los usamos */
+	}
+</style>

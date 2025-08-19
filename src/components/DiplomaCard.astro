@@ -1,0 +1,98 @@
+---
+// Propiedades para cada diploma
+export interface Props {
+  title: string;
+  date: string;
+  institute: string;
+  description: string;
+  imageUrl: string;
+}
+
+const { title, date, institute, description, imageUrl } = Astro.props;
+---
+
+<div class="diploma-card">
+  <div class="diploma-image">
+    <img src={imageUrl} alt={`Diploma de ${title}`} />
+  </div>
+  <div class="diploma-info">
+    <h3>{title}</h3>
+    <p class="diploma-date">{date}</p>
+    <p class="diploma-institute">{institute}</p>
+    <p class="diploma-description">
+      {description}
+    </p>
+  </div>
+</div>
+
+<style>
+  .diploma-card {
+    display: flex;
+    flex-direction: column;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    background-color: white;
+  }
+
+  .diploma-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+  }
+
+  .diploma-image {
+    width: 100%;
+    height: 200px;
+    overflow: hidden;
+  }
+
+  .diploma-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+  }
+
+  .diploma-card:hover .diploma-image img {
+    transform: scale(1.05);
+  }
+
+  .diploma-info {
+    padding: 1.5rem;
+  }
+
+  .diploma-info h3 {
+    margin-top: 0;
+    margin-bottom: 0.5rem;
+    font-size: 1.5rem;
+    color: var(--accent);
+  }
+
+  .diploma-date, .diploma-institute {
+    color: #666;
+    margin: 0.2rem 0;
+    font-size: 0.9rem;
+  }
+
+  .diploma-description {
+    margin-top: 0.8rem;
+    font-size: 0.95rem;
+  }
+
+  @media (min-width: 1024px) {
+    .diploma-card {
+      flex-direction: row;
+      align-items: center;
+    }
+
+    .diploma-image {
+      width: 35%;
+      height: 250px;
+    }
+
+    .diploma-info {
+      width: 65%;
+    }
+  }
+</style>
