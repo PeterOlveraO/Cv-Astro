@@ -332,7 +332,7 @@ const projects = [
 			</div>
 		</div>
 		
-		<script>
+		<script is:inline>
 			// Datos de proyectos con imágenes
 			const projectsData = {
 				1: {
@@ -363,16 +363,20 @@ const projects = [
 			// Mostrar lightbox
 			function showLightbox() {
 				const lightbox = document.getElementById('project-lightbox');
-				lightbox.style.display = 'block';
-				document.body.style.overflow = 'hidden';
+				if (lightbox) {
+					lightbox.style.display = 'block';
+					document.body.style.overflow = 'hidden';
+				}
 			}
 			
 			// Cerrar lightbox
 			function closeLightbox() {
 				const lightbox = document.getElementById('project-lightbox');
-				lightbox.style.display = 'none';
-				document.body.style.overflow = 'auto';
-				currentProject = null;
+				if (lightbox) {
+					lightbox.style.display = 'none';
+					document.body.style.overflow = 'auto';
+					currentProject = null;
+				}
 			}
 			
 			// Actualizar imagen del lightbox
@@ -382,10 +386,11 @@ const projects = [
 				const img = document.getElementById('lightbox-image');
 				const caption = document.getElementById('lightbox-caption-text');
 				
-				img.src = currentProject.images[currentImageIndex];
-				caption.textContent = `${currentProject.title} - Imagen ${currentImageIndex + 1} de ${currentProject.images.length}`;
-				
-				updateIndicators();
+				if (img && caption) {
+					img.src = currentProject.images[currentImageIndex];
+					caption.textContent = currentProject.title + ' - Imagen ' + (currentImageIndex + 1) + ' de ' + currentProject.images.length;
+					updateIndicators();
+				}
 			}
 			
 			// Crear indicadores
@@ -393,22 +398,28 @@ const projects = [
 				if (!currentProject) return;
 				
 				const container = document.querySelector('.lightbox-indicators');
-				container.innerHTML = '';
-				
-				currentProject.images.forEach((_, index) => {
-					const dot = document.createElement('div');
-					dot.className = `lightbox-dot ${index === 0 ? 'active' : ''}`;
-					dot.onclick = () => goToLightboxImage(index);
-					container.appendChild(dot);
-				});
+				if (container) {
+					container.innerHTML = '';
+					
+					for (let i = 0; i < currentProject.images.length; i++) {
+						const dot = document.createElement('div');
+						dot.className = 'lightbox-dot' + (i === 0 ? ' active' : '');
+						dot.onclick = function() { goToLightboxImage(i); };
+						container.appendChild(dot);
+					}
+				}
 			}
 			
 			// Actualizar indicadores
 			function updateIndicators() {
 				const dots = document.querySelectorAll('.lightbox-dot');
-				dots.forEach((dot, index) => {
-					dot.classList.toggle('active', index === currentImageIndex);
-				});
+				for (let i = 0; i < dots.length; i++) {
+					if (i === currentImageIndex) {
+						dots[i].classList.add('active');
+					} else {
+						dots[i].classList.remove('active');
+					}
+				}
 			}
 			
 			// Ir a imagen específica
@@ -434,21 +445,29 @@ const projects = [
 			}
 			
 			// Event listeners
-			document.addEventListener('DOMContentLoaded', () => {
+			document.addEventListener('DOMContentLoaded', function() {
 				// Botón cerrar
-				document.querySelector('.lightbox-close').onclick = closeLightbox;
+				const closeBtn = document.querySelector('.lightbox-close');
+				if (closeBtn) closeBtn.onclick = closeLightbox;
 				
 				// Navegación
-				document.querySelector('.lightbox-prev').onclick = previousLightboxImage;
-				document.querySelector('.lightbox-next').onclick = nextLightboxImage;
+				const prevBtn = document.querySelector('.lightbox-prev');
+				const nextBtn = document.querySelector('.lightbox-next');
+				if (prevBtn) prevBtn.onclick = previousLightboxImage;
+				if (nextBtn) nextBtn.onclick = nextLightboxImage;
 				
 				// Cerrar al hacer click fuera
-				document.getElementById('project-lightbox').onclick = (e) => {
-					if (e.target.id === 'project-lightbox') closeLightbox();
-				};
+				const lightboxEl = document.getElementById('project-lightbox');
+				if (lightboxEl) {
+					lightboxEl.onclick = function(e) {
+						if (e.target && e.target.id === 'project-lightbox') {
+							closeLightbox();
+						}
+					};
+				}
 				
 				// Teclas
-				document.addEventListener('keydown', (e) => {
+				document.addEventListener('keydown', function(e) {
 					if (!currentProject) return;
 					
 					if (e.key === 'Escape') closeLightbox();
