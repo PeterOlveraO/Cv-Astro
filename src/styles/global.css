@@ -20,6 +20,10 @@
 	--surface-variant: #2d2d2d;
 	--text-dark: #ffffff;
 	--text-secondary: #b0b0b0;
+	
+	/* Nuevas fuentes */
+	--font-main: 'Inter', system-ui, -apple-system, sans-serif;
+	--font-code: 'JetBrains Mono', 'Fira Code', Consolas, monospace;
 }
 @font-face {
 	font-family: "Atkinson";
@@ -36,7 +40,7 @@
 	font-display: swap;
 }
 body {
-	font-family: "Atkinson", sans-serif;
+	font-family: var(--font-main);
 	margin: 0;
 	padding: 0;
 	text-align: left;
@@ -45,8 +49,10 @@ body {
 	word-wrap: break-word;
 	overflow-wrap: break-word;
 	color: rgb(var(--gray-dark));
-	font-size: 18px;
+	font-size: 20px;
 	line-height: 1.7;
+	font-weight: 400;
+	letter-spacing: -0.01em;
 }
 main {
 	width: 720px;
@@ -63,21 +69,29 @@ h6 {
 	margin: 0 0 0.5rem 0;
 	color: rgb(var(--black));
 	line-height: 1.2;
+	font-weight: 700;
+	letter-spacing: -0.025em;
+	font-family: var(--font-main);
 }
 h1 {
-	font-size: 3.052em;
+	font-size: 3.2em;
+	font-weight: 800;
 }
 h2 {
-	font-size: 2.441em;
+	font-size: 2.6em;
+	font-weight: 700;
 }
 h3 {
-	font-size: 1.953em;
+	font-size: 2.1em;
+	font-weight: 600;
 }
 h4 {
-	font-size: 1.563em;
+	font-size: 1.7em;
+	font-weight: 600;
 }
 h5 {
-	font-size: 1.25em;
+	font-size: 1.4em;
+	font-weight: 600;
 }
 strong,
 b {
@@ -91,9 +105,11 @@ a:hover {
 }
 p {
 	margin-bottom: 1em;
+	font-weight: 500;
 }
 .prose p {
 	margin-bottom: 2em;
+	font-weight: 500;
 }
 textarea {
 	width: 100%;
@@ -114,13 +130,17 @@ code {
 	padding: 2px 5px;
 	background-color: rgb(var(--gray-light));
 	border-radius: 2px;
+	font-family: var(--font-code);
+	font-size: 0.9em;
 }
 pre {
 	padding: 1.5em;
 	border-radius: 8px;
+	font-family: var(--font-code);
 }
 pre > code {
 	all: unset;
+	font-family: var(--font-code);
 }
 blockquote {
 	border-left: 4px solid var(--accent);
@@ -134,7 +154,7 @@ hr {
 }
 @media (max-width: 720px) {
 	body {
-		font-size: 18px;
+		font-size: 19px;
 	}
 	main {
 		padding: 1em;
@@ -197,6 +217,7 @@ hr {
 	color: var(--accent-dark);
 	margin-bottom: 0.75rem;
 	font-size: 1.2rem;
+	letter-spacing: -0.01em;
 }
 
 .skill-category ul {
@@ -206,6 +227,8 @@ hr {
 
 .skill-category li {
 	margin-bottom: 0.3rem;
+	font-family: var(--font-code);
+	font-size: 0.95rem;
 }
 
 .experience-item, .education-item {
