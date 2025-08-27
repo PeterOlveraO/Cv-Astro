@@ -231,8 +231,131 @@ import { SITE_DESCRIPTION, SITE_TITLE } from '../consts';
 				font-weight: 500;
 			}
 
+			/* Experience Section */
+			.experience-container {
+				display: flex;
+				flex-direction: column;
+				gap: 2rem;
+				margin-top: 2rem;
+			}
+
+			.experience-item {
+				background: var(--surface-dark);
+				padding: 2rem;
+				border-radius: 12px;
+				border: 1px solid rgba(255, 255, 255, 0.1);
+				transition: transform 0.3s ease, border-color 0.3s ease;
+				position: relative;
+			}
+
+			.experience-item:hover {
+				transform: translateY(-2px);
+				border-color: var(--accent);
+			}
+
+			.experience-item::before {
+				content: "";
+				position: absolute;
+				left: 0;
+				top: 0;
+				bottom: 0;
+				width: 4px;
+				background: var(--accent);
+				border-radius: 0 4px 4px 0;
+			}
+
+			.experience-header {
+				display: flex;
+				flex-direction: column;
+				gap: 0.5rem;
+				margin-bottom: 1rem;
+			}
+
+			.experience-header h3 {
+				color: var(--text-dark);
+				margin: 0;
+				font-size: 1.5rem;
+				font-weight: 700;
+				letter-spacing: -0.01em;
+			}
+
+			.experience-period {
+				color: var(--accent);
+				font-weight: 600;
+				font-size: 1.1rem;
+				font-family: var(--font-code);
+			}
+
+			.company {
+				color: var(--text-secondary);
+				margin: 0 0 1rem 0;
+				font-size: 1.2rem;
+				font-weight: 600;
+			}
+
+			.company::before {
+				content: "🏢 ";
+				margin-right: 0.5rem;
+			}
+
+			.experience-description {
+				color: var(--text-secondary);
+				margin: 0 0 1.5rem 0;
+				line-height: 1.6;
+				font-size: 1.1rem;
+				font-weight: 400;
+			}
+
+			.experience-achievements {
+				list-style: none;
+				padding: 0;
+				margin: 0;
+			}
+
+			.experience-achievements li {
+				color: var(--text-secondary);
+				margin-bottom: 0.8rem;
+				padding-left: 1.5rem;
+				position: relative;
+				font-size: 1rem;
+				line-height: 1.5;
+			}
+
+			.experience-achievements li::before {
+				content: "✓";
+				color: var(--accent);
+				font-weight: bold;
+				position: absolute;
+				left: 0;
+				top: 0;
+			}
+
+			.experience-technologies {
+				display: flex;
+				flex-wrap: wrap;
+				gap: 0.5rem;
+				margin-top: 1.5rem;
+			}
+
+			.tech-badge {
+				background: rgba(245, 100, 100, 0.2);
+				color: var(--accent);
+				padding: 0.3rem 0.8rem;
+				border-radius: 20px;
+				font-size: 0.85rem;
+				font-weight: 500;
+				font-family: var(--font-code);
+				border: 1px solid rgba(245, 100, 100, 0.3);
+			}
+
 			@media (min-width: 768px) {
 				.education-header {
+					flex-direction: row;
+					justify-content: space-between;
+					align-items: center;
+				}
+				
+				.experience-header {
 					flex-direction: row;
 					justify-content: space-between;
 					align-items: center;
@@ -264,6 +387,80 @@ import { SITE_DESCRIPTION, SITE_TITLE } from '../consts';
 					Soy un desarrollador web apasionado por crear experiencias digitales atractivas y funcionales.
 					Mi enfoque combina habilidades técnicas sólidas con un ojo para el diseño intuitivo.
 				</p>
+			</section>
+
+			<section class="experience">
+				<h2>Experiencia Laboral</h2>
+				<div class="experience-container">
+
+					<div class="experience-item">
+						<div class="experience-header">
+							<h3>Asistente de ingeniero en sistemas</h3>
+							<span class="experience-period">2022 - 2023</span>
+						</div>
+						<h4 class="company">Chevrolet matriz Tampico</h4>
+						<p class="experience-description">
+							Asistente de ingeniero en sistemas, colaborando en el desarrollo y mantenimiento de aplicaciones internas y equipos de la empresa.
+						</p>
+						<ul class="experience-achievements">
+							<li>Colaboré en el desarrollo de una aplicación interna para la gestión de inventarios</li>
+							<li>Participé en la implementación de mejoras en la infraestructura de TI de la empresa</li>
+							<li>Apoyé en la capacitación de usuarios finales en nuevas herramientas y tecnologías</li>
+						</ul>
+						<div class="experience-technologies">
+							<span class="tech-badge">Visual Basic</span>
+							<span class="tech-badge">SQL Server</span>
+							
+						</div>
+					</div>
+					<div class="experience-item">
+						<div class="experience-header">
+							<h3>Lavaloza</h3>
+							<span class="experience-period">2023 - 2024</span>
+						</div>
+						<h4 class="company">Linderos</h4>
+						<p class="experience-description">
+							Limpieza de utensilios de cocina y apoyo en tareas generales del restaurante.
+						</p>
+						<ul class="experience-achievements">
+							<li>Adopté prácticas de higiene y seguridad alimentaria</li>
+						</ul>
+					</div>
+					
+					<div class="experience-item">
+						<div class="experience-header">
+							<h3>Mesero</h3>
+							<span class="experience-period">Mayo/2024 - Agosto/2024</span>
+						</div>
+						<h4 class="company">Gorditas ayuntamiento</h4>
+						<p class="experience-description">
+							Atención al cliente y servicio de alimentos.
+						</p>
+						<ul class="experience-achievements">
+							<li>Adopté prácticas de higiene y seguridad alimentaria</li>
+							<li>Brindé un excelente servicio al cliente en un entorno de alta presión</li>
+							<li>Colaboré con el equipo de cocina para garantizar un servicio eficiente</li>
+						</ul>
+				
+					</div>
+					
+					<div class="experience-item">
+						<div class="experience-header">
+							<h3>Asistente de Cocina</h3>
+							<span class="experience-period">Julio/2025 - Actualidad</span>
+						</div>
+						<h4 class="company">Querido ramen</h4>
+						<p class="experience-description">
+							Apoyo en la preparación de alimentos y mantenimiento de la limpieza en la cocina.
+						</p>
+						<ul class="experience-achievements">
+							<li>Ayudo a la preparación de alimentos y a mantener la limpieza en la cocina.</li>
+							<li>Colaboro con el equipo de cocina para garantizar un servicio eficiente.</li>
+
+						</ul>
+						
+					</div>
+				</div>
 			</section>
 
 			<section class="education">
