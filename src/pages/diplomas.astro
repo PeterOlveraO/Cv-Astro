@@ -6,39 +6,47 @@ import DiplomaDisplay from '../components/DiplomaDisplay.astro';
 import DiplomaLightbox from '../components/DiplomaLightbox.astro';
 import { SITE_TITLE } from '../consts';
 
-// Listar los diplomas desde la carpeta public/diplomas
+// Listar los diplomas con imágenes temáticas específicas y diplomas reales
 const diplomaFiles = [
 	{
 		title: "Creacion de aplicaciones moviles y de escritorio con .NET MAUI",
-		imageUrl: "/diplomas/Diploma8.jpg"
+		themeImageUrl: "https://images.unsplash.com/photo-1551650975-87deedd944c3?w=400&h=300&fit=crop&auto=format", // Mobile development theme
+		diplomaImageUrl: "/diplomas/Diploma8.jpg"
 	},
 	{
 		title: "Programador (Orientado a objetos)",
-		imageUrl: "/diplomas/diploma1.jpg"
+		themeImageUrl: "https://images.unsplash.com/photo-1555949963-aa79dcee981c?w=400&h=300&fit=crop&auto=format", // OOP Programming theme
+		diplomaImageUrl: "/diplomas/diploma1.jpg"
 	},
 	{
 		title: "Uso responsable de dispositivos electronicos",
-		imageUrl: "/diplomas/diploma2.jpg"
+		themeImageUrl: "https://images.unsplash.com/photo-1498049794561-7780e7231661?w=400&h=300&fit=crop&auto=format", // Digital responsibility and ethics theme
+		diplomaImageUrl: "/diplomas/diploma2.jpg"
 	},
 	{
-		title: "Evaluador de experiencias de usuario  (UX)",
-		imageUrl: "/diplomas/diploma3.jpg"
+		title: "Evaluador de experiencias de usuario (UX)",
+		themeImageUrl: "https://images.unsplash.com/photo-1561070791-2526d30994b5?w=400&h=300&fit=crop&auto=format", // UX Design theme
+		diplomaImageUrl: "/diplomas/diploma3.jpg"
 	},
 	{
 		title: "Programador en C#",
-		imageUrl: "/diplomas/diploma4.jpg"
+		themeImageUrl: "https://images.unsplash.com/photo-1515879218367-8466d910aaa4?w=400&h=300&fit=crop&auto=format", // C# .NET development theme
+		diplomaImageUrl: "/diplomas/diploma4.jpg"
 	},
 	{
-		title: "Paradigma de programacion  (Orientado a objetos)",
-		imageUrl: "/diplomas/diploma5.jpg"
+		title: "Paradigma de programacion (Orientado a objetos)",
+		themeImageUrl: "https://images.unsplash.com/photo-1542831371-29b0f74f9713?w=400&h=300&fit=crop&auto=format", // Programming paradigms theme
+		diplomaImageUrl: "/diplomas/diploma5.jpg"
 	},
 	{
 		title: "Diseñador de experiencias de usuario (UX)",
-		imageUrl: "/diplomas/diploma6.jpg"
+		themeImageUrl: "https://images.unsplash.com/photo-1586717791821-3f44a563fa4c?w=400&h=300&fit=crop&auto=format", // UX/UI Design theme
+		diplomaImageUrl: "/diplomas/diploma6.jpg"
 	},
 	{
 		title: "Desarrollador de interfaces graficas",
-		imageUrl: "/diplomas/diploma7.jpg"
+		themeImageUrl: "https://images.unsplash.com/photo-1559028006-448665bd7c7f?w=400&h=300&fit=crop&auto=format", // GUI Development theme
+		diplomaImageUrl: "/diplomas/diploma7.jpg"
 	}
 ]
 ---
@@ -54,14 +62,15 @@ const diplomaFiles = [
 			<section class="diplomas-section">				<h1>Mis Certificaciones y Diplomas</h1>
 				<p class="section-description">
 					Estas son las certificaciones y diplomas que he obtenido a lo largo de mi carrera profesional.
-					
+					Las imágenes muestran el área temática de cada certificación. <strong>Haz clic en cualquier tarjeta para ver el diploma oficial.</strong>
 				</p>
 				
 				<div class="diplomas-grid">
 					{diplomaFiles.map((diploma) => (
 						<DiplomaDisplay 
 							title={diploma.title}
-							imageUrl={diploma.imageUrl}
+							themeImageUrl={diploma.themeImageUrl}
+							diplomaImageUrl={diploma.diplomaImageUrl}
 						/>
 					))}
 				</div>
