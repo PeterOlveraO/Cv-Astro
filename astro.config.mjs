@@ -7,7 +7,6 @@ import { defineConfig } from 'astro/config';
 // https://astro.build/config
 export default defineConfig({
     site: 'https://example.com',
-    base: '/Cv-Astro/', // <--- Añade esta línea
     integrations: [mdx(), sitemap()],
-    output: 'static'
+    output: 'static' // <--- Añade esta línea
 });
