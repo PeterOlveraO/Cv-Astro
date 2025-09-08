@@ -6,56 +6,46 @@ import DiplomaDisplay from '../components/DiplomaDisplay.astro';
 import DiplomaLightbox from '../components/DiplomaLightbox.astro';
 import { SITE_TITLE } from '../consts';
 
-// Importar imágenes temáticas desde assets
-import mauiTheme from '../assets/blog-placeholder-1.jpg';
-import oopTheme from '../assets/blog-placeholder-2.jpg';
-import devicesTheme from '../assets/blog-placeholder-3.jpg';
-import uxEvalTheme from '../assets/blog-placeholder-4.jpg';
-import csharpTheme from '../assets/blog-placeholder-5.jpg';
-import paradigmsTheme from '../assets/blog-placeholder-about.jpg';
-import uxDesignTheme from '../assets/blog-placeholder-4.jpg';
-import interfacesTheme from '../assets/blog-placeholder-3.jpg';
-
-// Listar los diplomas con imágenes temáticas importadas y diplomas reales
+// Listar los diplomas con imágenes temáticas que representan el contenido del diploma
 const diplomaFiles = [
 	{
 		title: "Creacion de aplicaciones moviles y de escritorio con .NET MAUI",
-		themeImage: mauiTheme,
+		themeImageSrc: "https://images.unsplash.com/photo-1611162617213-7d7a39e9b1d7?w=500&h=350&fit=crop&q=80&auto=format", // Imagen específica de aplicaciones móviles/escritorio
 		diplomaImageUrl: "/diplomas/Diploma8.jpg"
 	},
 	{
 		title: "Programador (Orientado a objetos)",
-		themeImage: oopTheme,
+		themeImageSrc: "https://images.unsplash.com/photo-1516116216624-53e697fedbea?w=500&h=350&fit=crop&q=80&auto=format", // Programación OOP con diagramas de clase
 		diplomaImageUrl: "/diplomas/diploma1.jpg"
 	},
 	{
 		title: "Uso responsable de dispositivos electronicos",
-		themeImage: devicesTheme,
+		themeImageSrc: "https://images.unsplash.com/photo-1581094378468-6007089e8902?w=500&h=350&fit=crop&q=80&auto=format", // Imagen de dispositivos electrónicos en uso responsable
 		diplomaImageUrl: "/diplomas/diploma2.jpg"
 	},
 	{
-		title: "Evaluador de experiencias de usuario  (UX)",
-		themeImage: uxEvalTheme,
+		title: "Evaluador de experiencias de usuario (UX)",
+		themeImageSrc: "https://images.unsplash.com/photo-1555774698-0b77e0d5fac6?w=500&h=350&fit=crop&q=80&auto=format", // Evaluación UX con wireframes
 		diplomaImageUrl: "/diplomas/diploma3.jpg"
 	},
 	{
 		title: "Programador en C#",
-		themeImage: csharpTheme,
+		themeImageSrc: "https://images.unsplash.com/photo-1633356122102-3fe601e05bd2?w=500&h=350&fit=crop&q=80&auto=format", // Código C# específico
 		diplomaImageUrl: "/diplomas/diploma4.jpg"
 	},
 	{
-		title: "Paradigma de programacion  (Orientado a objetos)",
-		themeImage: paradigmsTheme,
+		title: "Paradigma de programacion (Orientado a objetos)",
+		themeImageSrc: "https://images.unsplash.com/photo-1507721999472-8ed4421c4af2?w=500&h=350&fit=crop&q=80&auto=format", // Estructura de paradigmas de programación
 		diplomaImageUrl: "/diplomas/diploma5.jpg"
 	},
 	{
 		title: "Diseñador de experiencias de usuario (UX)",
-		themeImage: uxDesignTheme,
+		themeImageSrc: "https://images.unsplash.com/photo-1561070791-2526d30994b5?w=500&h=350&fit=crop&q=80&auto=format", // Diseño UX con persona y journey map
 		diplomaImageUrl: "/diplomas/diploma6.jpg"
 	},
 	{
 		title: "Desarrollador de interfaces graficas",
-		themeImage: interfacesTheme,
+		themeImageSrc: "https://images.unsplash.com/photo-1559028012-481c04fa702d?w=500&h=350&fit=crop&q=80&auto=format", // Desarrollo de interfaces gráficas
 		diplomaImageUrl: "/diplomas/diploma7.jpg"
 	}
 ]
@@ -79,7 +69,7 @@ const diplomaFiles = [
 					{diplomaFiles.map((diploma) => (
 						<DiplomaDisplay 
 							title={diploma.title}
-							themeImageSrc={diploma.themeImage}
+							themeImageSrc={diploma.themeImageSrc}
 							diplomaImageUrl={diploma.diplomaImageUrl}
 						/>
 					))}
