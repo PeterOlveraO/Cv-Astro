@@ -6,39 +6,57 @@ import DiplomaDisplay from '../components/DiplomaDisplay.astro';
 import DiplomaLightbox from '../components/DiplomaLightbox.astro';
 import { SITE_TITLE } from '../consts';
 
-// Listar los diplomas desde la carpeta public/diplomas
+// Importar imágenes temáticas desde assets
+import mauiTheme from '../assets/blog-placeholder-1.jpg';
+import oopTheme from '../assets/blog-placeholder-2.jpg';
+import devicesTheme from '../assets/blog-placeholder-3.jpg';
+import uxEvalTheme from '../assets/blog-placeholder-4.jpg';
+import csharpTheme from '../assets/blog-placeholder-5.jpg';
+import paradigmsTheme from '../assets/blog-placeholder-about.jpg';
+import uxDesignTheme from '../assets/blog-placeholder-4.jpg';
+import interfacesTheme from '../assets/blog-placeholder-3.jpg';
+
+// Listar los diplomas con imágenes temáticas importadas y diplomas reales
 const diplomaFiles = [
 	{
 		title: "Creacion de aplicaciones moviles y de escritorio con .NET MAUI",
-		imageUrl: "/diplomas/Diploma8.jpg"
+		themeImage: mauiTheme,
+		diplomaImageUrl: "/diplomas/Diploma8.jpg"
 	},
 	{
 		title: "Programador (Orientado a objetos)",
-		imageUrl: "/diplomas/diploma1.jpg"
+		themeImage: oopTheme,
+		diplomaImageUrl: "/diplomas/diploma1.jpg"
 	},
 	{
 		title: "Uso responsable de dispositivos electronicos",
-		imageUrl: "/diplomas/diploma2.jpg"
+		themeImage: devicesTheme,
+		diplomaImageUrl: "/diplomas/diploma2.jpg"
 	},
 	{
 		title: "Evaluador de experiencias de usuario  (UX)",
-		imageUrl: "/diplomas/diploma3.jpg"
+		themeImage: uxEvalTheme,
+		diplomaImageUrl: "/diplomas/diploma3.jpg"
 	},
 	{
 		title: "Programador en C#",
-		imageUrl: "/diplomas/diploma4.jpg"
+		themeImage: csharpTheme,
+		diplomaImageUrl: "/diplomas/diploma4.jpg"
 	},
 	{
 		title: "Paradigma de programacion  (Orientado a objetos)",
-		imageUrl: "/diplomas/diploma5.jpg"
+		themeImage: paradigmsTheme,
+		diplomaImageUrl: "/diplomas/diploma5.jpg"
 	},
 	{
 		title: "Diseñador de experiencias de usuario (UX)",
-		imageUrl: "/diplomas/diploma6.jpg"
+		themeImage: uxDesignTheme,
+		diplomaImageUrl: "/diplomas/diploma6.jpg"
 	},
 	{
 		title: "Desarrollador de interfaces graficas",
-		imageUrl: "/diplomas/diploma7.jpg"
+		themeImage: interfacesTheme,
+		diplomaImageUrl: "/diplomas/diploma7.jpg"
 	}
 ]
 ---
@@ -61,7 +79,8 @@ const diplomaFiles = [
 					{diplomaFiles.map((diploma) => (
 						<DiplomaDisplay 
 							title={diploma.title}
-							imageUrl={diploma.imageUrl}
+							themeImageSrc={diploma.themeImage}
+							diplomaImageUrl={diploma.diplomaImageUrl}
 						/>
 					))}
 				</div>

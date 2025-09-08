@@ -2,15 +2,16 @@
 // Propiedades para cada diploma
 export interface Props {
   title: string;
-  imageUrl: string;
+  themeImageSrc: ImageMetadata;
+  diplomaImageUrl: string;
 }
 
-const { title, imageUrl } = Astro.props;
+const { title, themeImageSrc, diplomaImageUrl } = Astro.props;
 ---
 
-<div class="diploma-display">
+<div class="diploma-display" data-diploma-url={diplomaImageUrl}>
   <div class="diploma-image-container">
-    <img src={imageUrl} alt={`Diploma de ${title}`} />
+    <img src={themeImageSrc.src} alt={`Tema de ${title}`} />
     <div class="diploma-overlay">
       <div class="diploma-fullscreen-icon">
         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -19,7 +20,7 @@ const { title, imageUrl } = Astro.props;
           <line x1="21" y1="3" x2="14" y2="10"></line>
           <line x1="3" y1="21" x2="10" y2="14"></line>
         </svg>
-        <span>Ver completo</span>
+        <span>📜 Ver Diploma Oficial</span>
       </div>
     </div>
   </div>
@@ -141,14 +142,13 @@ const { title, imageUrl } = Astro.props;
     if (diplomaDisplays) {
       diplomaDisplays.forEach(display => {
         display.addEventListener('click', () => {
-          const imgElement = display.querySelector('img');
+          // Obtener la URL del diploma real del atributo data-diploma-url
+          const diplomaUrl = display.getAttribute('data-diploma-url');
           const titleElement = display.querySelector('.diploma-title h3');
-          
-          const imgSrc = imgElement?.getAttribute('src');
           const title = titleElement?.textContent || 'Diploma';
           
-          if (imgSrc && window.showDiplomaLightbox) {
-            window.showDiplomaLightbox(imgSrc, title);
+          if (diplomaUrl && window.showDiplomaLightbox) {
+            window.showDiplomaLightbox(diplomaUrl, title);
           }
         });
       });
