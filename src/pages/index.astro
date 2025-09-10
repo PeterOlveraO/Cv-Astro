@@ -74,6 +74,26 @@ import { SITE_DESCRIPTION, SITE_TITLE } from '../consts';
 				letter-spacing: -0.005em;
 			}
 
+			/* Botón de descarga CV */
+			.cv-button-container {
+				margin-top: 1.5rem;
+			}
+
+			.cv-button {
+				display: inline-flex;
+				align-items: center;
+				gap: 0.5rem;
+				
+				color: white;
+				padding: 0.6rem 1.2rem;
+				border-radius: 30px;
+				font-weight: 600;
+				font-size: 1rem;
+				text-decoration: none;
+				box-shadow: 0 4px 15px rgba(245, 100, 100, 0.3);
+				border: 2px solid var(--accent);
+			}
+
 			/* Responsive Design */
 			@media (min-width: 768px) {
 				.hero-content {
@@ -377,6 +397,16 @@ import { SITE_DESCRIPTION, SITE_TITLE } from '../consts';
 						<p class="tagline">
 							La unica constante de la vida es el cambio
 						</p>
+						<div class="cv-button-container">
+							<a href="/cv.pdf" target="_blank" class="cv-button">
+								<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+									<path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+									<polyline points="7 10 12 15 17 10"></polyline>
+									<line x1="12" y1="15" x2="12" y2="3"></line>
+								</svg>
+								Descargar CV
+							</a>
+						</div>
 					</div>
 				</div>
 			</section>
