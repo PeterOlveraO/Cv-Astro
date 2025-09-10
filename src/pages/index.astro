@@ -10,225 +10,489 @@ import { SITE_DESCRIPTION, SITE_TITLE } from '../consts';
 	<head>
 		<BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
 		<style>
-			/* Hero Section */
+			/* Hero Section - Nuevo diseño moderno */
 			.hero {
-				padding: 4rem 2rem;
-				text-align: center;
-				background: var(--surface-dark);
-				border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+				position: relative;
+				min-height: 100vh;
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				background: linear-gradient(135deg, var(--surface-dark) 0%, var(--background-dark) 100%);
+				overflow: hidden;
+			}
+
+			.hero::before {
+				content: '';
+				position: absolute;
+				top: 0;
+				left: 0;
+				right: 0;
+				bottom: 0;
+				background: 
+					radial-gradient(circle at 20% 80%, rgba(245, 100, 100, 0.1) 0%, transparent 50%),
+					radial-gradient(circle at 80% 20%, rgba(245, 100, 100, 0.08) 0%, transparent 50%);
+				pointer-events: none;
 			}
 
 			.hero-content {
+				position: relative;
+				z-index: 2;
+				display: grid;
+				grid-template-columns: 1fr;
+				gap: 3rem;
+				max-width: 1200px;
+				margin: 0 auto;
+				padding: 2rem;
+				align-items: center;
+			}
+
+			.profile-section {
 				display: flex;
 				flex-direction: column;
 				align-items: center;
-				max-width: 800px;
-				margin: 0 auto;
-				gap: 2rem;
+				text-align: center;
 			}
 
 			.profile-image-container {
 				position: relative;
+				margin-bottom: 2rem;
+			}
+
+			.profile-image-container::before {
+				content: '';
+				position: absolute;
+				top: -20px;
+				left: -20px;
+				right: -20px;
+				bottom: -20px;
+				background: linear-gradient(45deg, var(--accent), rgba(245, 100, 100, 0.3));
+				border-radius: 50%;
+				z-index: -1;
+				animation: pulse 3s ease-in-out infinite;
+			}
+
+			@keyframes pulse {
+				0%, 100% { transform: scale(1); opacity: 0.7; }
+				50% { transform: scale(1.05); opacity: 0.9; }
 			}
 
 			.profile-image {
-				width: 200px;
-				height: 200px;
+				width: 280px;
+				height: 280px;
 				border-radius: 50%;
 				object-fit: cover;
 				object-position: center;
-				aspect-ratio: 1/1;
-				border: 4px solid var(--accent);
-				box-shadow: 0 10px 30px rgba(245, 100, 100, 0.3);
-				transition: transform 0.3s ease, box-shadow 0.3s ease;
-				display: block;
+				border: 6px solid var(--surface-dark);
+				box-shadow: 
+					0 20px 40px rgba(0, 0, 0, 0.4),
+					0 0 0 1px rgba(255, 255, 255, 0.1);
+				transition: all 0.4s ease;
 			}
 
 			.profile-image:hover {
-				transform: scale(1.05);
-				box-shadow: 0 15px 40px rgba(245, 100, 100, 0.4);
+				transform: scale(1.05) rotate(2deg);
+				box-shadow: 
+					0 30px 60px rgba(0, 0, 0, 0.5),
+					0 0 0 1px rgba(245, 100, 100, 0.3);
+			}
+
+			.hero-text {
+				max-width: 600px;
 			}
 
 			.hero-text h1 {
-				font-size: 2.7rem;
-				margin: 0;
-				color: var(--text-dark);
-				font-weight: 800;
-				letter-spacing: -0.03em;
+				font-size: clamp(2.5rem, 5vw, 4rem);
+				margin: 0 0 1rem 0;
+				background: linear-gradient(135deg, var(--text-dark) 0%, var(--accent) 100%);
+				-webkit-background-clip: text;
+				-webkit-text-fill-color: transparent;
+				background-clip: text;
+				font-weight: 900;
+				letter-spacing: -0.04em;
+				line-height: 1.1;
 			}
 
 			.job-title {
-				font-size: 1.9rem;
-				margin: 0.5rem 0;
+				font-size: clamp(1.5rem, 3vw, 2.5rem);
+				margin: 0 0 1.5rem 0;
 				color: var(--accent);
-				font-weight: 600;
-				letter-spacing: -0.01em;
+				font-weight: 700;
+				letter-spacing: -0.02em;
+				position: relative;
+			}
+
+			.job-title::after {
+				content: '';
+				position: absolute;
+				bottom: -8px;
+				left: 0;
+				width: 60px;
+				height: 3px;
+				background: linear-gradient(90deg, var(--accent), transparent);
+				border-radius: 2px;
 			}
 
 			.tagline {
-				font-size: 1.3rem;
+				font-size: 1.4rem;
 				color: var(--text-secondary);
-				margin: 1rem 0 0 0;
-				max-width: 500px;
+				margin: 0 0 2rem 0;
 				font-weight: 400;
-				letter-spacing: -0.005em;
+				letter-spacing: -0.01em;
+				line-height: 1.6;
+				opacity: 0.9;
+			}
+
+			.cta-buttons {
+				display: flex;
+				gap: 1rem;
+				flex-wrap: wrap;
+				justify-content: center;
+			}
+
+			.cta-button {
+				padding: 1rem 2rem;
+				border: none;
+				border-radius: 50px;
+				font-weight: 600;
+				text-decoration: none;
+				transition: all 0.3s ease;
+				position: relative;
+				overflow: hidden;
+				font-size: 1rem;
+			}
+
+			.cta-button.primary {
+				background: linear-gradient(135deg, var(--accent) 0%, #ff6b6b 100%);
+				color: white;
+				box-shadow: 0 8px 25px rgba(245, 100, 100, 0.3);
+			}
+
+			.cta-button.primary:hover {
+				transform: translateY(-2px);
+				box-shadow: 0 12px 35px rgba(245, 100, 100, 0.4);
+			}
+
+			.cta-button.secondary {
+				background: transparent;
+				color: var(--text-dark);
+				border: 2px solid rgba(255, 255, 255, 0.2);
+				backdrop-filter: blur(10px);
+			}
+
+			.cta-button.secondary:hover {
+				background: rgba(255, 255, 255, 0.1);
+				border-color: var(--accent);
+				transform: translateY(-2px);
 			}
 
 			/* Responsive Design */
-			@media (min-width: 768px) {
+			@media (min-width: 1024px) {
 				.hero-content {
-					flex-direction: row;
+					grid-template-columns: 1fr 1.2fr;
+					gap: 4rem;
 					text-align: left;
 				}
 
-				.profile-image {
-					width: 250px;
-					height: 250px;
-					aspect-ratio: 1/1;
+				.profile-section {
+					align-items: flex-start;
+					text-align: left;
 				}
 
-				.hero-text h1 {
-					font-size: 3.2rem;
-					letter-spacing: -0.035em;
-				}
-
-				.job-title {
-					font-size: 2.2rem;
-					letter-spacing: -0.015em;
+				.cta-buttons {
+					justify-content: flex-start;
 				}
 			}
 
-			/* Section Styles */
-			section {
-				padding: 3rem 2rem;
-				max-width: 1000px;
+			@media (max-width: 768px) {
+				.hero {
+					min-height: 90vh;
+				}
+				
+				.profile-image {
+					width: 220px;
+					height: 220px;
+				}
+
+				.cta-buttons {
+					flex-direction: column;
+					align-items: center;
+				}
+
+				.cta-button {
+					width: 100%;
+					max-width: 280px;
+				}
+			}
+
+			/* Section Styles - Diseño moderno */
+			section:not(.hero) {
+				padding: 5rem 2rem;
+				max-width: 1200px;
 				margin: 0 auto;
+				position: relative;
+			}
+
+			section:not(.hero)::before {
+				content: '';
+				position: absolute;
+				top: 0;
+				left: 50%;
+				transform: translateX(-50%);
+				width: 60px;
+				height: 4px;
+				background: linear-gradient(90deg, var(--accent), rgba(245, 100, 100, 0.3));
+				border-radius: 2px;
 			}
 
 			section h2 {
 				color: var(--text-dark);
-				font-size: 2.2rem;
-				margin-bottom: 1.5rem;
-				border-bottom: 2px solid var(--accent);
-				padding-bottom: 0.5rem;
-				font-weight: 700;
-				letter-spacing: -0.02em;
+				font-size: clamp(2rem, 4vw, 2.8rem);
+				margin: 2rem 0 3rem 0;
+				font-weight: 800;
+				letter-spacing: -0.03em;
+				text-align: center;
+				position: relative;
+			}
+
+			section h2::after {
+				content: '';
+				position: absolute;
+				bottom: -12px;
+				left: 50%;
+				transform: translateX(-50%);
+				width: 80px;
+				height: 2px;
+				background: var(--accent);
+				border-radius: 1px;
 			}
 
 			section p {
 				color: var(--text-secondary);
-				font-size: 1.2rem;
-				line-height: 1.6;
+				font-size: 1.3rem;
+				line-height: 1.7;
 				font-weight: 400;
+				text-align: center;
+				max-width: 800px;
+				margin: 0 auto 2rem auto;
 			}
 
 			section a {
 				color: var(--accent);
 				text-decoration: none;
 				font-weight: 600;
-				transition: color 0.3s ease;
+				transition: all 0.3s ease;
+				position: relative;
 			}
 
 			section a:hover {
 				color: var(--text-dark);
-				text-decoration: underline;
 			}
 
-			/* Skills Section */
+			section a::after {
+				content: '';
+				position: absolute;
+				bottom: -2px;
+				left: 0;
+				width: 0;
+				height: 2px;
+				background: var(--accent);
+				transition: width 0.3s ease;
+			}
+
+			section a:hover::after {
+				width: 100%;
+			}
+
+			/* Skills Section - Diseño de cards mejorado */
 			.skills-container {
 				display: grid;
-				grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-				gap: 2rem;
-				margin-top: 2rem;
+				grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+				gap: 2.5rem;
+				margin-top: 3rem;
 			}
 
 			.skill-category {
-				background: var(--surface-dark);
-				padding: 1.5rem;
-				border-radius: 12px;
+				background: linear-gradient(135deg, var(--surface-dark) 0%, rgba(30, 30, 30, 0.8) 100%);
+				padding: 2.5rem;
+				border-radius: 20px;
 				border: 1px solid rgba(255, 255, 255, 0.1);
+				position: relative;
+				overflow: hidden;
+				transition: all 0.4s ease;
+				backdrop-filter: blur(10px);
+			}
+
+			.skill-category::before {
+				content: '';
+				position: absolute;
+				top: 0;
+				left: 0;
+				right: 0;
+				height: 4px;
+				background: linear-gradient(90deg, var(--accent), rgba(245, 100, 100, 0.5));
+			}
+
+			.skill-category:hover {
+				transform: translateY(-8px);
+				border-color: rgba(245, 100, 100, 0.3);
+				box-shadow: 
+					0 20px 40px rgba(0, 0, 0, 0.3),
+					0 0 0 1px rgba(245, 100, 100, 0.2);
 			}
 
 			.skill-category h3 {
 				color: var(--accent);
-				margin-bottom: 1rem;
-				font-size: 1.4rem;
+				margin-bottom: 1.5rem;
+				font-size: 1.6rem;
 				font-weight: 700;
+				text-align: center;
+				position: relative;
+			}
+
+			.skill-category h3::after {
+				content: '';
+				position: absolute;
+				bottom: -8px;
+				left: 50%;
+				transform: translateX(-50%);
+				width: 40px;
+				height: 2px;
+				background: var(--accent);
+				border-radius: 1px;
 			}
 
 			.skill-category ul {
 				list-style: none;
 				padding: 0;
 				margin: 0;
+				display: grid;
+				gap: 0.8rem;
 			}
 
 			.skill-category li {
 				color: var(--text-secondary);
-				padding: 0.3rem 0;
+				padding: 0.8rem 1rem;
 				font-size: 1.1rem;
 				font-weight: 500;
+				background: rgba(255, 255, 255, 0.05);
+				border-radius: 10px;
+				border-left: 3px solid var(--accent);
+				transition: all 0.3s ease;
+			}
+
+			.skill-category li:hover {
+				background: rgba(245, 100, 100, 0.1);
+				transform: translateX(5px);
+				color: var(--text-dark);
 			}
 
 			.skill-category li::before {
-				content: "▸ ";
+				content: "◆ ";
 				color: var(--accent);
 				font-weight: bold;
+				margin-right: 0.5rem;
 			}
 
-			/* Education Section */
+			/* Education Section - Diseño timeline mejorado */
 			.education-container {
 				display: flex;
 				flex-direction: column;
-				gap: 2rem;
-				margin-top: 2rem;
+				gap: 3rem;
+				margin-top: 3rem;
+				position: relative;
+			}
+
+			.education-container::before {
+				content: '';
+				position: absolute;
+				left: 50%;
+				top: 0;
+				bottom: 0;
+				width: 3px;
+				background: linear-gradient(to bottom, var(--accent), rgba(245, 100, 100, 0.3));
+				transform: translateX(-50%);
 			}
 
 			.education-item {
-				background: var(--surface-dark);
-				padding: 2rem;
-				border-radius: 12px;
+				background: linear-gradient(135deg, var(--surface-dark) 0%, rgba(30, 30, 30, 0.9) 100%);
+				padding: 2.5rem;
+				border-radius: 20px;
 				border: 1px solid rgba(255, 255, 255, 0.1);
-				transition: transform 0.3s ease, border-color 0.3s ease;
+				transition: all 0.4s ease;
+				position: relative;
+				backdrop-filter: blur(10px);
+				box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+			}
+
+			.education-item::before {
+				content: '';
+				position: absolute;
+				left: 50%;
+				top: -15px;
+				transform: translateX(-50%);
+				width: 30px;
+				height: 30px;
+				background: var(--accent);
+				border-radius: 50%;
+				border: 4px solid var(--background-dark);
+				z-index: 2;
 			}
 
 			.education-item:hover {
-				transform: translateY(-2px);
-				border-color: var(--accent);
+				transform: scale(1.02);
+				border-color: rgba(245, 100, 100, 0.3);
+				box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
 			}
 
 			.education-header {
 				display: flex;
 				flex-direction: column;
-				gap: 0.5rem;
-				margin-bottom: 1rem;
+				gap: 0.8rem;
+				margin-bottom: 1.5rem;
+				text-align: center;
 			}
 
 			.education-header h3 {
 				color: var(--text-dark);
 				margin: 0;
-				font-size: 1.5rem;
+				font-size: 1.8rem;
 				font-weight: 700;
+				background: linear-gradient(135deg, var(--text-dark) 0%, var(--accent) 100%);
+				-webkit-background-clip: text;
+				-webkit-text-fill-color: transparent;
+				background-clip: text;
 			}
 
 			.education-period {
 				color: var(--accent);
 				font-weight: 600;
-				font-size: 1.1rem;
+				font-size: 1.2rem;
+				padding: 0.5rem 1rem;
+				background: rgba(245, 100, 100, 0.1);
+				border-radius: 25px;
+				display: inline-block;
 			}
 
 			.institution {
 				color: var(--text-secondary);
-				margin: 0 0 1rem 0;
-				font-size: 1.2rem;
+				margin: 0 0 1.5rem 0;
+				font-size: 1.3rem;
 				font-weight: 600;
+				text-align: center;
+			}
+
+			.institution::before {
+				content: "🎓 ";
+				margin-right: 0.5rem;
 			}
 
 			.education-description {
 				color: var(--text-secondary);
 				margin: 0;
-				line-height: 1.6;
-				font-size: 1.1rem;
-				font-weight: 500;
+				line-height: 1.7;
+				font-size: 1.2rem;
+				font-weight: 400;
+				text-align: center;
 			}
 
 			/* Experience Section */
@@ -361,6 +625,66 @@ import { SITE_DESCRIPTION, SITE_TITLE } from '../consts';
 					align-items: center;
 				}
 			}
+
+			/* Preview Sections - Diseño de llamada a la acción */
+			.projects-preview,
+			.diplomas-preview {
+				background: linear-gradient(135deg, var(--surface-dark) 0%, rgba(30, 30, 30, 0.8) 100%);
+				border-radius: 20px;
+				padding: 3rem;
+				margin: 2rem 0;
+				border: 1px solid rgba(255, 255, 255, 0.1);
+				text-align: center;
+				position: relative;
+				overflow: hidden;
+			}
+
+			.projects-preview::before,
+			.diplomas-preview::before {
+				content: '';
+				position: absolute;
+				top: 0;
+				left: 0;
+				right: 0;
+				height: 4px;
+				background: linear-gradient(90deg, var(--accent), rgba(245, 100, 100, 0.5));
+			}
+
+			.projects-preview h2,
+			.diplomas-preview h2 {
+				margin-bottom: 1.5rem;
+			}
+
+			.projects-preview p,
+			.diplomas-preview p {
+				font-size: 1.2rem;
+				margin-bottom: 2rem;
+			}
+
+			.projects-preview a,
+			.diplomas-preview a {
+				display: inline-block;
+				padding: 1rem 2rem;
+				background: linear-gradient(135deg, var(--accent) 0%, #ff6b6b 100%);
+				color: white;
+				text-decoration: none;
+				border-radius: 50px;
+				font-weight: 600;
+				transition: all 0.3s ease;
+				box-shadow: 0 8px 25px rgba(245, 100, 100, 0.3);
+			}
+
+			.projects-preview a:hover,
+			.diplomas-preview a:hover {
+				transform: translateY(-2px);
+				box-shadow: 0 12px 35px rgba(245, 100, 100, 0.4);
+				color: white;
+			}
+
+			.projects-preview a::after,
+			.diplomas-preview a::after {
+				display: none;
+			}
 		</style>
 	</head>
 	<body>
@@ -368,15 +692,21 @@ import { SITE_DESCRIPTION, SITE_TITLE } from '../consts';
 		<main>
 			<section class="hero">
 				<div class="hero-content">
-					<div class="profile-image-container">
-						<img src="/profile-photo.jpg" alt="Pedro Alberto Olvera Ochoa" class="profile-image">
+					<div class="profile-section">
+						<div class="profile-image-container">
+							<img src="/profile-photo.jpg" alt="Pedro Alberto Olvera Ochoa" class="profile-image">
+						</div>
 					</div>
 					<div class="hero-text">
 						<h1>Pedro Alberto Olvera Ochoa</h1>
-						<h2 class="job-title">Desarrollador Web</h2>
+						<h2 class="job-title">Desarrollador Web & DevOps</h2>
 						<p class="tagline">
-							La unica constante de la vida es el cambio
+							La única constante de la vida es el cambio. Como futuro profesional de DevOps, busco unir la estabilidad con la innovación continua.
 						</p>
+						<div class="cta-buttons">
+							<a href="#experience" class="cta-button primary">Ver Experiencia</a>
+							<a href="/diplomas" class="cta-button secondary">Certificaciones</a>
+						</div>
 					</div>
 				</div>
 			</section>
@@ -390,7 +720,7 @@ Como futuro profesional de DevOps, busco unir la estabilidad con el cambio. Mi o
 				</p>
 			</section>
 
-			<section class="experience">
+			<section class="experience" id="experience">
 				<h2>Experiencia Laboral</h2>
 				<div class="experience-container">
 
