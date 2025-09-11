@@ -7,18 +7,11 @@ export interface Props {
 }
 
 const { title, themeImageSrc, diplomaImageUrl } = Astro.props;
-
-// URL de imagen de respaldo en caso de que la principal falle
-const fallbackImageUrl = "/projects/app-1.jpg";
 ---
 
 <div class="diploma-display" data-diploma-url={diplomaImageUrl}>
   <div class="diploma-image-container">
-    <img 
-      src={themeImageSrc} 
-      alt={`Tema de ${title}`} 
-      onerror="this.onerror=null; this.src='/projects/app-1.jpg';"
-    />
+    <img src={themeImageSrc} alt={`Tema de ${title}`} />
     <div class="diploma-overlay">
       <div class="diploma-fullscreen-icon">
         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">

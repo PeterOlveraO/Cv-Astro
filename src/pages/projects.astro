@@ -1,0 +1,657 @@
+---
+import BaseHead from '../components/BaseHead.astro';
+import Footer from '../components/Footer.astro';
+import Header from '../components/Header.astro';
+import { SITE_TITLE } from '../consts';
+
+// Datos estáticos de proyectos (no redirigen a ningún lado)
+const projects = [
+	{
+		id: 1,
+		title: "Aplicación Móvil",
+		description: "Aplicación móvil desarrollada con tecnologías modernas, enfocada en proporcionar una experiencia de usuario fluida e intuitiva.",
+		images: [
+			"/projects/app-1.jpg",
+			"/projects/app-2.jpg",
+			"/projects/app-3.jpg"
+		],
+		technologies: ["React Native", "Laravel","JavaScript", "PHP","API REST", "Supabase"],
+		github: "https://github.com/RTash22/dentista-app",
+		demo: null, // Solo GitHub para la app
+		features: [
+			"Interfaz intuitiva",
+			"Funcionalidad offline",
+			"Notificaciones push",
+			"Integración con APIs"
+		],
+		type: "app" // Para identificar que es una app
+	},
+	{
+		id: 2,
+		title: "Sitio Web para Dentistas",
+		description: "Página web profesional para clínica dental, con sistema de citas, información de servicios y diseño responsive optimizado para conversiones.",
+		images: [
+			"/projects/dentist-web-1.jpg",
+			"/projects/dentist-web-2.jpg",
+			"/projects/dentist-web-3.jpg"
+		],
+		technologies: ["HTML5", "CSS3", "JavaScript", "API REST", "Supabase"],
+		github: "https://github.com/PeterOlveraO/PeterOlveraO.github.io",
+		demo: "https://peterolverao.github.io/",
+		features: [
+			"Sistema de citas online",
+			"Galería de servicios",
+			"Diseño responsive",
+			"Optimización SEO"
+		],
+		type: "website" // Para identificar que es una página web
+	}
+];
+---
+
+<!doctype html>
+<html lang="es">
+	<head>
+		<BaseHead title={"Proyectos | " + SITE_TITLE} description={"Portafolio de proyectos de desarrollo web"} />
+		<style>
+			main {
+				max-width: 1200px;
+				margin: 0 auto;
+				padding: 2rem;
+			}
+			
+			.page-title {
+				margin-bottom: 2rem;
+				text-align: center;
+				color: var(--text-dark);
+				font-size: 2.5rem;
+			}
+			
+			.page-description {
+				margin-bottom: 3rem;
+				text-align: center;
+				color: var(--text-secondary);
+				font-size: 1.3rem;
+				max-width: 700px;
+				margin-left: auto;
+				margin-right: auto;
+				font-weight: 500;
+			}
+
+			.projects-grid {
+				display: grid;
+				grid-template-columns: repeat(auto-fit, minmax(450px, 1fr));
+				gap: 2.5rem;
+				margin-top: 3rem;
+			}
+
+			.project-card {
+				background: var(--surface-dark);
+				border-radius: 16% 16% 0 0;
+				border: 1px solid rgba(255, 255, 255, 0.1);
+				overflow: hidden;
+				transition: transform 0.3s ease, border-color 0.3s ease;
+				padding: 2rem;
+			}
+
+			.project-card:hover {
+				transform: translateY(-8px);
+				border-color: var(--accent);
+			}
+
+			.project-content {
+				padding: 0;
+			}
+
+			.project-title {
+				color: var(--text-dark);
+				font-size: 1.8rem;
+				margin: 0 0 1.5rem 0;
+				font-weight: 700;
+				letter-spacing: -0.015em;
+			}
+
+			.project-description {
+				color: var(--text-secondary);
+				line-height: 1.6;
+				margin-bottom: 1.5rem;
+				font-size: 1.1rem;
+				font-weight: 400;
+			}
+
+			.view-images-btn {
+				width: 100%;
+				padding: 0.8rem;
+				background: linear-gradient(45deg, var(--accent), var(--accent-dark));
+				color: white;
+				border: none;
+				border-radius: 8px;
+				font-weight: 700;
+				cursor: pointer;
+				transition: all 0.3s ease;
+				margin-bottom: 1.5rem;
+				font-size: 1rem;
+			}
+
+			.view-images-btn:hover {
+				background: linear-gradient(45deg, var(--accent-dark), var(--accent));
+				transform: translateY(-2px);
+				box-shadow: 0 5px 15px rgba(245, 100, 100, 0.4);
+			}
+
+			.tech-stack {
+				display: flex;
+				flex-wrap: wrap;
+				gap: 0.5rem;
+				margin-bottom: 1.5rem;
+			}
+
+			.tech-tag {
+				background: rgba(245, 100, 100, 0.2);
+				color: var(--accent);
+				padding: 0.4rem 0.9rem;
+				border-radius: 6px;
+				font-size: 0.9rem;
+				border: 1px solid rgba(245, 100, 100, 0.3);
+				font-weight: 500;
+				font-family: var(--font-code);
+				letter-spacing: 0.01em;
+			}
+
+			.project-features {
+				margin-bottom: 1.5rem;
+			}
+
+			.features-title {
+				color: var(--text-dark);
+				font-size: 1.1rem;
+				margin-bottom: 0.8rem;
+				font-weight: 700;
+			}
+
+			.features-list {
+				list-style: none;
+				padding: 0;
+				margin: 0;
+			}
+
+			.features-list li {
+				color: var(--text-secondary);
+				font-size: 1rem;
+				margin-bottom: 0.4rem;
+				position: relative;
+				padding-left: 1.2rem;
+				font-weight: 500;
+			}
+
+			.features-list li::before {
+				content: "✓";
+				color: var(--accent);
+				position: absolute;
+				left: 0;
+				font-weight: bold;
+			}
+
+			.project-links {
+				display: flex;
+				gap: 1rem;
+			}
+
+			/* Cuando solo hay un botón, que ocupe más espacio */
+			.project-links:has(a:only-child) {
+				justify-content: center;
+			}
+
+			.project-links:has(a:only-child) .project-link {
+				flex: 0 0 60%;
+			}
+
+			.project-link {
+				flex: 1;
+				text-align: center;
+				padding: 0.8rem 1.1rem;
+				border-radius: 8px;
+				text-decoration: none;
+				font-weight: 600;
+				transition: all 0.3s ease;
+				font-size: 1rem;
+			}
+
+			.github-link {
+				background: transparent;
+				color: var(--text-secondary);
+				border: 1px solid rgba(255, 255, 255, 0.2);
+			}
+
+			.github-link:hover {
+				background: rgba(255, 255, 255, 0.1);
+				color: var(--text-dark);
+			}
+
+			.demo-link {
+				background: var(--accent);
+				color: white;
+				border: 1px solid var(--accent);
+			}
+
+			.demo-link:hover {
+				background: var(--accent-dark);
+				transform: translateY(-2px);
+			}
+
+			@media (max-width: 768px) {
+				.projects-grid {
+					grid-template-columns: 1fr;
+					gap: 1.5rem;
+				}
+				
+				main {
+					padding: 1rem;
+				}
+				
+				.page-title {
+					font-size: 2rem;
+				}
+
+				.project-image {
+					height: 300px;
+				}
+			}
+
+			@media (min-width: 769px) {
+				.project-image {
+					height: 400px;
+				}
+			}
+		</style>
+	</head>
+	<body>
+		<Header />
+		<main>
+			<section>
+				<h1 class="page-title">Mis Proyectos</h1>
+				<p class="page-description">
+					Una colección de proyectos que demuestran mis habilidades en desarrollo web. 
+					Cada proyecto incluye las tecnologías utilizadas y características principales.
+				</p>
+				
+				<div class="projects-grid">
+					{projects.map((project) => (
+						<div class="project-card">
+							<div class="project-content">
+								<h2 class="project-title">{project.title}</h2>
+								<p class="project-description">{project.description}</p>
+								
+								<button 
+									class="view-images-btn" 
+									onclick={`openProjectLightbox(${project.id})`}
+								>
+									📸 Ver Imágenes del Proyecto
+								</button>
+								
+								<div class="tech-stack">
+									{project.technologies.map((tech) => (
+										<span class="tech-tag">{tech}</span>
+									))}
+								</div>
+								
+								<div class="project-features">
+									<h3 class="features-title">Características principales:</h3>
+									<ul class="features-list">
+										{project.features.map((feature) => (
+											<li>{feature}</li>
+										))}
+									</ul>
+								</div>
+								
+								<div class="project-links">
+									<a href={project.github} class="project-link github-link" target="_blank">
+										GitHub
+									</a>
+									{project.demo && (
+										<a href={project.demo} class="project-link demo-link" target="_blank">
+											Ver Demo
+										</a>
+									)}
+								</div>
+							</div>
+						</div>
+					))}
+				</div>
+			</section>
+		</main>
+		<Footer />
+		
+		<!-- Lightbox para las imágenes de proyectos -->
+		<div id="project-lightbox" class="lightbox">
+			<div class="lightbox-content">
+				<span class="lightbox-close">&times;</span>
+				<button class="lightbox-nav lightbox-prev">‹</button>
+				<button class="lightbox-nav lightbox-next">›</button>
+				<img id="lightbox-image" src="" alt="Imagen del proyecto">
+				<div class="lightbox-caption">
+					<p id="lightbox-caption-text"></p>
+				</div>
+				<div class="lightbox-indicators">
+					<!-- Los dots se generan dinámicamente -->
+				</div>
+			</div>
+		</div>
+		
+		<script is:inline>
+			// Datos de proyectos con imágenes
+			const projectsData = {
+				1: {
+					title: "Aplicación Móvil",
+					images: ["/projects/app-1.jpg", "/projects/app-2.jpg", "/projects/app-3.jpg"]
+				},
+				2: {
+					title: "Sitio Web para Dentistas", 
+					images: ["/projects/dentist-web-1.jpg", "/projects/dentist-web-2.jpg", "/projects/dentist-web-3.jpg"]
+				}
+			};
+			
+			let currentProject = null;
+			let currentImageIndex = 0;
+			
+			// Abrir lightbox del proyecto
+			function openProjectLightbox(projectId) {
+				currentProject = projectsData[projectId];
+				currentImageIndex = 0;
+				
+				if (currentProject) {
+					showLightbox();
+					updateLightboxImage();
+					createIndicators();
+				}
+			}
+			
+			// Mostrar lightbox
+			function showLightbox() {
+				const lightbox = document.getElementById('project-lightbox');
+				if (lightbox) {
+					lightbox.style.display = 'block';
+					document.body.style.overflow = 'hidden';
+				}
+			}
+			
+			// Cerrar lightbox
+			function closeLightbox() {
+				const lightbox = document.getElementById('project-lightbox');
+				if (lightbox) {
+					lightbox.style.display = 'none';
+					document.body.style.overflow = 'auto';
+					currentProject = null;
+				}
+			}
+			
+			// Actualizar imagen del lightbox
+			function updateLightboxImage() {
+				if (!currentProject) return;
+				
+				const img = document.getElementById('lightbox-image');
+				const caption = document.getElementById('lightbox-caption-text');
+				
+				if (img && caption) {
+					img.src = currentProject.images[currentImageIndex];
+					caption.textContent = currentProject.title + ' - Imagen ' + (currentImageIndex + 1) + ' de ' + currentProject.images.length;
+					updateIndicators();
+				}
+			}
+			
+			// Crear indicadores
+			function createIndicators() {
+				if (!currentProject) return;
+				
+				const container = document.querySelector('.lightbox-indicators');
+				if (container) {
+					container.innerHTML = '';
+					
+					for (let i = 0; i < currentProject.images.length; i++) {
+						const dot = document.createElement('div');
+						dot.className = 'lightbox-dot' + (i === 0 ? ' active' : '');
+						dot.onclick = function() { goToLightboxImage(i); };
+						container.appendChild(dot);
+					}
+				}
+			}
+			
+			// Actualizar indicadores
+			function updateIndicators() {
+				const dots = document.querySelectorAll('.lightbox-dot');
+				for (let i = 0; i < dots.length; i++) {
+					if (i === currentImageIndex) {
+						dots[i].classList.add('active');
+					} else {
+						dots[i].classList.remove('active');
+					}
+				}
+			}
+			
+			// Ir a imagen específica
+			function goToLightboxImage(index) {
+				currentImageIndex = index;
+				updateLightboxImage();
+			}
+			
+			// Imagen siguiente
+			function nextLightboxImage() {
+				if (!currentProject) return;
+				currentImageIndex = (currentImageIndex + 1) % currentProject.images.length;
+				updateLightboxImage();
+			}
+			
+			// Imagen anterior
+			function previousLightboxImage() {
+				if (!currentProject) return;
+				currentImageIndex = currentImageIndex === 0 
+					? currentProject.images.length - 1 
+					: currentImageIndex - 1;
+				updateLightboxImage();
+			}
+			
+			// Event listeners
+			document.addEventListener('DOMContentLoaded', function() {
+				// Botón cerrar
+				const closeBtn = document.querySelector('.lightbox-close');
+				if (closeBtn) closeBtn.onclick = closeLightbox;
+				
+				// Navegación
+				const prevBtn = document.querySelector('.lightbox-prev');
+				const nextBtn = document.querySelector('.lightbox-next');
+				if (prevBtn) prevBtn.onclick = previousLightboxImage;
+				if (nextBtn) nextBtn.onclick = nextLightboxImage;
+				
+				// Cerrar al hacer click fuera
+				const lightboxEl = document.getElementById('project-lightbox');
+				if (lightboxEl) {
+					lightboxEl.onclick = function(e) {
+						if (e.target && e.target.id === 'project-lightbox') {
+							closeLightbox();
+						}
+					};
+				}
+				
+				// Teclas
+				document.addEventListener('keydown', function(e) {
+					if (!currentProject) return;
+					
+					if (e.key === 'Escape') closeLightbox();
+					if (e.key === 'ArrowLeft') previousLightboxImage();
+					if (e.key === 'ArrowRight') nextLightboxImage();
+				});
+			});
+			
+			// Hacer función global
+			window.openProjectLightbox = openProjectLightbox;
+		</script>
+		
+		<style>
+			/* Lightbox para proyectos */
+			.lightbox {
+				display: none;
+				position: fixed;
+				z-index: 2000;
+				left: 0;
+				top: 0;
+				width: 100%;
+				height: 100%;
+				background-color: rgba(0, 0, 0, 0.95);
+				padding: 20px;
+			}
+
+			.lightbox-content {
+				position: relative;
+				margin: auto;
+				width: 100%;
+				height: 100%;
+				display: flex;
+				flex-direction: column;
+				justify-content: center;
+				align-items: center;
+			}
+
+			.lightbox-close {
+				position: absolute;
+				top: 20px;
+				right: 30px;
+				color: white;
+				font-size: 40px;
+				font-weight: bold;
+				cursor: pointer;
+				z-index: 2001;
+				user-select: none;
+			}
+
+			.lightbox-close:hover {
+				color: #f56464;
+			}
+
+			.lightbox-nav {
+				position: absolute;
+				top: 50%;
+				transform: translateY(-50%);
+				background: rgba(0, 0, 0, 0.7);
+				color: white;
+				border: none;
+				width: 50px;
+				height: 50px;
+				border-radius: 50%;
+				cursor: pointer;
+				font-size: 24px;
+				font-weight: bold;
+				z-index: 2001;
+				transition: background 0.3s ease;
+				user-select: none;
+			}
+
+			.lightbox-nav:hover {
+				background: #f56464;
+			}
+
+			.lightbox-prev {
+				left: 30px;
+			}
+
+			.lightbox-next {
+				right: 30px;
+			}
+
+			#lightbox-image {
+				max-width: 90%;
+				max-height: 80vh;
+				object-fit: contain;
+				border-radius: 8px;
+				box-shadow: 0 20px 60px rgba(0, 0, 0, 0.8);
+			}
+
+			.lightbox-caption {
+				padding: 20px;
+				color: white;
+				text-align: center;
+				max-width: 80%;
+			}
+
+			#lightbox-caption-text {
+				margin: 0;
+				font-size: 1.3rem;
+				color: #b8b8b8;
+				font-weight: 600;
+			}
+
+			.lightbox-indicators {
+				display: flex;
+				gap: 12px;
+				margin-top: 20px;
+			}
+
+			.lightbox-dot {
+				width: 12px;
+				height: 12px;
+				border-radius: 50%;
+				background: rgba(255, 255, 255, 0.5);
+				cursor: pointer;
+				transition: background 0.3s ease;
+			}
+
+			.lightbox-dot.active {
+				background: #f56464;
+			}
+
+			.lightbox-dot:hover {
+				background: #f56464;
+			}
+
+			/* Responsive para móviles */
+			@media (max-width: 768px) {
+				.lightbox {
+					padding: 10px;
+				}
+
+				.lightbox-close {
+					top: 10px;
+					right: 20px;
+					font-size: 30px;
+				}
+
+				.lightbox-nav {
+					width: 40px;
+					height: 40px;
+					font-size: 20px;
+				}
+
+				.lightbox-prev {
+					left: 15px;
+				}
+
+				.lightbox-next {
+					right: 15px;
+				}
+
+				#lightbox-image {
+					max-width: 95%;
+					max-height: 70vh;
+				}
+
+				.lightbox-caption {
+					padding: 15px;
+				}
+
+				#lightbox-caption-text {
+					font-size: 1.1rem;
+					font-weight: 600;
+				}
+
+				.lightbox-indicators {
+					gap: 8px;
+					margin-top: 15px;
+				}
+
+				.lightbox-dot {
+					width: 10px;
+					height: 10px;
+				}
+			}
+		</style>
+	</body>
+</html>
