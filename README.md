@@ -1,19 +1,68 @@
-# Astro Starter Kit: Blog
+# Astro-CV: Porta## 🚀 Estructura del Proyecto
 
-```sh
-npm create astro@latest -- --template blog
+Dentro del proyecto Astro-CV, encontrarás la siguiente estructura de carpetas y archivos:
+
+```text
+├── public/               # Recursos estáticos (imágenes, fuentes, PDF del CV)
+│   ├── diplomas/         # Imágenes de diplomas en formato WebP
+│   ├── fonts/            # Fuentes personalizadas
+│   └── projects/         # Imágenes de proyectos en formato WebP
+├── scripts/              # Scripts de utilidad
+│   └── convert-to-webp.js # Script para convertir JPG a WebP
+├── src/
+│   ├── assets/           # Recursos para el procesamiento de Astro
+│   ├── components/       # Componentes reutilizables
+│   │   ├── DiplomaCard.astro
+│   │   ├── DiplomaLightbox.astro
+│   │   └── ...
+│   ├── content/          # Contenido en Markdown para el blog
+│   ├── layouts/          # Plantillas de página
+│   ├── pages/            # Páginas del sitio
+│   │   ├── diplomas.astro
+│   │   ├── index.astro
+│   │   ├── projects.astro
+│   │   └── ...
+│   └── styles/           # Estilos CSS
+├── astro.config.mjs      # Configuración de Astro
+├── package.json
+└── tsconfig.json
 ```
 
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
+Cada página del sitio se encuentra en el directorio `src/pages/` y se expone como una ruta basada en su nombre de archivo. Los componentes reutilizables están en `src/components/`, creados específicamente para este portafolio.
 
-Features:
+## 📝 Páginas Principales
 
-- ✅ Minimal styling (make it your own!)
-- ✅ 100/100 Lighthouse performance
-- ✅ SEO-friendly with canonical URLs and OpenGraph data
-- ✅ Sitemap support
-- ✅ RSS Feed support
-- ✅ Markdown & MDX support
+El portafolio incluye las siguientes páginas principales:
+
+- **Inicio (`index.astro`)**: Página principal con información personal, experiencia y habilidades.
+- **Proyectos (`projects.astro`)**: Muestra de proyectos con imágenes, descripciones y tecnologías utilizadas.
+- **Diplomas (`diplomas.astro`)**: Galería de certificaciones y diplomas profesionales.
+- **Blog (`blog/index.astro`)**: Sección de blog con artículos técnicos y profesionales.
+- **Acerca de (`about.astro`)**: Información detallada sobre el perfil profesional.
+
+## 🖼️ Optimización de Imágenes
+
+Todas las imágenes en el proyecto están en formato WebP para mejorar el rendimiento. Se incluye un script (`scripts/convert-to-webp.js`) para convertir automáticamente imágenes JPG a WebP:
+
+```javascript
+// Para convertir nuevas imágenes JPG a WebP:
+node scripts/convert-to-webp.js
+```l
+
+Un portafolio personal y CV en línea construido con Astro, diseñado para mostrar tu experiencia profesional, proyectos, diplomas y habilidades de manera elegante y eficiente.
+
+![Imagen del Portafolio](public/profile-photo.webp)
+
+## Características
+
+- ✅ Diseño moderno y responsivo
+- ✅ Alto rendimiento (100/100 en Lighthouse)
+- ✅ Optimizado para SEO con metadatos OpenGraph
+- ✅ Secciones para Proyectos, Diplomas y Blog
+- ✅ Lightbox para visualización de imágenes de proyectos
+- ✅ Formato WebP para imágenes, mejorando el rendimiento
+- ✅ Soporte para RSS
+- ✅ Diseño personalizable
 
 ## 🚀 Project Structure
 
@@ -40,23 +89,35 @@ The `src/content/` directory contains "collections" of related Markdown and MDX 
 
 Any static assets, like images, can be placed in the `public/` directory.
 
-## 🧞 Commands
+## 🧞 Comandos
 
-All commands are run from the root of the project, from a terminal:
+Todos los comandos se ejecutan desde la raíz del proyecto:
 
-| Command                   | Action                                           |
+| Comando                   | Acción                                           |
 | :------------------------ | :----------------------------------------------- |
-| `npm install`             | Installs dependencies                            |
-| `npm run dev`             | Starts local dev server at `localhost:4321`      |
-| `npm run build`           | Build your production site to `./dist/`          |
-| `npm run preview`         | Preview your build locally, before deploying     |
-| `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `npm run astro -- --help` | Get help using the Astro CLI                     |
+| `npm install`             | Instala dependencias                             |
+| `npm run dev`             | Inicia servidor de desarrollo en `localhost:4321`|
+| `npm run build`           | Compila el sitio para producción en `./dist/`    |
+| `npm run preview`         | Vista previa local antes de desplegar            |
+| `npm run astro ...`       | Ejecuta comandos CLI como `astro add`, `check`   |
 
-## 👀 Want to learn more?
+## 🎨 Personalización
 
-Check out [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+El portafolio es altamente personalizable:
 
-## Credit
+1. Modifica el contenido personal en `src/pages/` 
+2. Actualiza las imágenes en `public/`
+3. Cambia estilos en `src/styles/global.css`
+4. Configura los metadatos del sitio en `src/consts.ts`
 
-This theme is based off of the lovely [Bear Blog](https://github.com/HermanMartinus/bearblog/).
+## 📱 Responsivo
+
+El diseño está completamente optimizado para todos los dispositivos, desde móviles hasta pantallas grandes.
+
+## 🚀 Despliegue
+
+El proyecto está listo para ser desplegado en cualquier plataforma que soporte sitios estáticos (Netlify, Vercel, GitHub Pages, etc.).
+
+---
+
+Creado con [Astro](https://astro.build) 🚀
