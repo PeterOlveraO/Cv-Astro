@@ -1,122 +1,88 @@
-# Astro-CV: Porta## 🚀 Estructura del Proyecto
+# 🚀 Portafolio Personal - Astro CV
 
-Dentro del proyecto Astro-CV, encontrarás la siguiente estructura de carpetas y archivos:
+Portafolio profesional y currículum en línea construido con [Astro](https://astro.build), diseñado para mostrar experiencia, proyectos, diplomas y habilidades de manera elegante y eficiente.
 
-```text
-├── public/               # Recursos estáticos (imágenes, fuentes, PDF del CV)
-│   ├── diplomas/         # Imágenes de diplomas en formato WebP
-│   ├── fonts/            # Fuentes personalizadas
-│   └── projects/         # Imágenes de proyectos en formato WebP
-├── scripts/              # Scripts de utilidad
-│   └── convert-to-webp.js # Script para convertir JPG a WebP
-├── src/
-│   ├── assets/           # Recursos para el procesamiento de Astro
-│   ├── components/       # Componentes reutilizables
-│   │   ├── DiplomaCard.astro
-│   │   ├── DiplomaLightbox.astro
-│   │   └── ...
-│   ├── content/          # Contenido en Markdown para el blog
-│   ├── layouts/          # Plantillas de página
-│   ├── pages/            # Páginas del sitio
-│   │   ├── diplomas.astro
-│   │   ├── index.astro
-│   │   ├── projects.astro
-│   │   └── ...
-│   └── styles/           # Estilos CSS
-├── astro.config.mjs      # Configuración de Astro
-├── package.json
-└── tsconfig.json
+![Vista previa del portafolio](public/profile-photo.webp)
+
+## ✨ Características
+
+- Diseño moderno y responsivo
+- Alto rendimiento
+- SEO optimizado con metadatos OpenGraph
+- Lightbox para visualización de imágenes
+- Imágenes en formato WebP
+- Diseño personalizable
+
+## 📁 Estructura del Proyecto
+
 ```
-
-Cada página del sitio se encuentra en el directorio `src/pages/` y se expone como una ruta basada en su nombre de archivo. Los componentes reutilizables están en `src/components/`, creados específicamente para este portafolio.
+├── public/                   # Recursos estáticos
+│   ├── cv.pdf               # Currículum PDF
+│   ├── diplomas/            # Imágenes de diplomas
+│   ├── favicon.svg         # Favicon
+│   ├── profile-photo.webp  # Foto de perfil
+│   └── projects/           # Imágenes de proyectos
+├── src/
+│   ├── components/         # Componentes reutilizables
+│   │   ├── BaseHead.astro  # Metadatos y SEO
+│   │   ├── Footer.astro    # Pie de página
+│   │   ├── Header.astro    # Navegación
+│   │   ├── HeaderLink.astro
+│   │   ├── DiplomaDisplay.astro
+│   │   └── DiplomaLightbox.astro
+│   ├── consts.ts           # Configuración global
+│   ├── pages/              # Páginas del sitio
+│   │   ├── index.astro     # Inicio
+│   │   ├── projects.astro # Proyectos
+│   │   └── diplomas.astro  # Diplomas/Certificaciones
+│   └── styles/
+│       └── global.css      # Estilos globales
+├── astro.config.mjs        # Configuración de Astro
+├── package.json
+└── README.md
+```
 
 ## 📝 Páginas Principales
 
-El portafolio incluye las siguientes páginas principales:
+| Página | Descripción |
+|--------|-------------|
+| `/` | Inicio: información personal, experiencia, educación y habilidades |
+| `/projects` | Portafolio de proyectos con imágenes y tecnologías |
+| `/diplomas` | Galería de certificaciones y diplomas |
 
-- **Inicio (`index.astro`)**: Página principal con información personal, experiencia y habilidades.
-- **Proyectos (`projects.astro`)**: Muestra de proyectos con imágenes, descripciones y tecnologías utilizadas.
-- **Diplomas (`diplomas.astro`)**: Galería de certificaciones y diplomas profesionales.
-- **Blog (`blog/index.astro`)**: Sección de blog con artículos técnicos y profesionales.
-- **Acerca de (`about.astro`)**: Información detallada sobre el perfil profesional.
-
-## 🖼️ Optimización de Imágenes
-
-Todas las imágenes en el proyecto están en formato WebP para mejorar el rendimiento. Se incluye un script (`scripts/convert-to-webp.js`) para convertir automáticamente imágenes JPG a WebP:
-
-```javascript
-// Para convertir nuevas imágenes JPG a WebP:
-node scripts/convert-to-webp.js
-```l
-
-Un portafolio personal y CV en línea construido con Astro, diseñado para mostrar tu experiencia profesional, proyectos, diplomas y habilidades de manera elegante y eficiente.
-
-![Imagen del Portafolio](public/profile-photo.webp)
-
-## Características
-
-- ✅ Diseño moderno y responsivo
-- ✅ Alto rendimiento (100/100 en Lighthouse)
-- ✅ Optimizado para SEO con metadatos OpenGraph
-- ✅ Secciones para Proyectos, Diplomas y Blog
-- ✅ Lightbox para visualización de imágenes de proyectos
-- ✅ Formato WebP para imágenes, mejorando el rendimiento
-- ✅ Soporte para RSS
-- ✅ Diseño personalizable
-
-## 🚀 Project Structure
-
-Inside of your Astro project, you'll see the following folders and files:
-
-```text
-├── public/
-├── src/
-│   ├── components/
-│   ├── content/
-│   ├── layouts/
-│   └── pages/
-├── astro.config.mjs
-├── README.md
-├── package.json
-└── tsconfig.json
-```
-
-Astro looks for `.astro` or `.md` files in the `src/pages/` directory. Each page is exposed as a route based on its file name.
-
-There's nothing special about `src/components/`, but that's where we like to put any Astro/React/Vue/Svelte/Preact components.
-
-The `src/content/` directory contains "collections" of related Markdown and MDX documents. Use `getCollection()` to retrieve posts from `src/content/blog/`, and type-check your frontmatter using an optional schema. See [Astro's Content Collections docs](https://docs.astro.build/en/guides/content-collections/) to learn more.
-
-Any static assets, like images, can be placed in the `public/` directory.
-
-## 🧞 Comandos
+## 🛠️ Comandos
 
 Todos los comandos se ejecutan desde la raíz del proyecto:
 
-| Comando                   | Acción                                           |
-| :------------------------ | :----------------------------------------------- |
-| `npm install`             | Instala dependencias                             |
-| `npm run dev`             | Inicia servidor de desarrollo en `localhost:4321`|
-| `npm run build`           | Compila el sitio para producción en `./dist/`    |
-| `npm run preview`         | Vista previa local antes de desplegar            |
-| `npm run astro ...`       | Ejecuta comandos CLI como `astro add`, `check`   |
+```bash
+# Instalar dependencias
+pnpm install
+
+# Iniciar servidor de desarrollo
+pnpm dev
+
+# Compilar para producción
+pnpm build
+
+# Vista previa local
+pnpm preview
+```
 
 ## 🎨 Personalización
 
-El portafolio es altamente personalizable:
+1. **Contenido personal**: Edita `src/pages/index.astro`
+2. **Proyectos**: Modifica `src/pages/projects.astro`
+3. **Diplomas**: Actualiza `src/pages/diplomas.astro`
+4. **Imágenes**: Cambia archivos en `public/`
+5. **Estilos**: Edita `src/styles/global.css`
+6. **Metadatos del sitio**: Modifica `src/consts.ts`
 
-1. Modifica el contenido personal en `src/pages/` 
-2. Actualiza las imágenes en `public/`
-3. Cambia estilos en `src/styles/global.css`
-4. Configura los metadatos del sitio en `src/consts.ts`
+## 📱 Despliegue
 
-## 📱 Responsivo
+El proyecto está listo para desplegarse en cualquier plataforma de hosting estático:
 
-El diseño está completamente optimizado para todos los dispositivos, desde móviles hasta pantallas grandes.
-
-## 🚀 Despliegue
-
-El proyecto está listo para ser desplegado en cualquier plataforma que soporte sitios estáticos (Netlify, Vercel, GitHub Pages, etc.).
+- **GitHub Pages**: Configurado en `astro.config.mjs` con site URL
+- **Netlify / Vercel**: Compatible automáticamente
 
 ---
 
