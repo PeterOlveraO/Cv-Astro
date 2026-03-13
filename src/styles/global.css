@@ -7,158 +7,105 @@
 :root {
 	--accent: #f56464;
 	--accent-dark: #f54242;
-	--black: 255, 255, 255;
 	--gray: 180, 180, 180;
 	--gray-light: 45, 45, 45;
 	--gray-dark: 220, 220, 220;
-	--gray-gradient: rgba(var(--gray-light), 50%), #1a1a1a;
-	--box-shadow:
-		0 2px 6px rgba(0, 0, 0, 25%), 0 8px 24px rgba(0, 0, 0, 33%), 0 16px 32px
-		rgba(0, 0, 0, 33%);
 	--background-dark: #121212;
 	--surface-dark: #1e1e1e;
 	--surface-variant: #2d2d2d;
 	--text-dark: #ffffff;
 	--text-secondary: #b0b0b0;
 	
-	/* Nuevas fuentes */
+	/* Fuentes */
 	--font-main: 'Inter', system-ui, -apple-system, sans-serif;
 	--font-code: 'JetBrains Mono', 'Fira Code', Consolas, monospace;
 }
-@font-face {
-	font-family: "Atkinson";
-	src: url("/fonts/atkinson-regular.woff") format("woff");
-	font-weight: 400;
-	font-style: normal;
-	font-display: swap;
-}
-@font-face {
-	font-family: "Atkinson";
-	src: url("/fonts/atkinson-bold.woff") format("woff");
-	font-weight: 700;
-	font-style: normal;
-	font-display: swap;
-}
+
 body {
 	font-family: var(--font-main);
 	margin: 0;
 	padding: 0;
 	text-align: left;
 	background: var(--background-dark);
-	background-size: 100% 600px;
 	word-wrap: break-word;
 	overflow-wrap: break-word;
-	color: rgb(var(--gray-dark));
+	color: var(--text-secondary);
 	font-size: 20px;
 	line-height: 1.7;
 	font-weight: 400;
 	letter-spacing: -0.01em;
 }
+
 main {
-	width: 720px;
-	max-width: calc(100% - 2em);
-	margin: auto;
-	padding: 3em 1em;
+	max-width: 100%;
+	margin: 0;
+	padding: 0;
 }
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
+
+h1, h2, h3, h4, h5, h6 {
 	margin: 0 0 0.5rem 0;
-	color: rgb(var(--black));
+	color: var(--text-dark);
 	line-height: 1.2;
 	font-weight: 700;
 	letter-spacing: -0.025em;
 	font-family: var(--font-main);
 }
-h1 {
-	font-size: 3.2em;
-	font-weight: 800;
-}
-h2 {
-	font-size: 2.6em;
-	font-weight: 700;
-}
-h3 {
-	font-size: 2.1em;
-	font-weight: 600;
-}
-h4 {
-	font-size: 1.7em;
-	font-weight: 600;
-}
-h5 {
-	font-size: 1.4em;
-	font-weight: 600;
-}
-strong,
-b {
-	font-weight: 700;
-}
-a {
-	color: var(--accent);
-}
-a:hover {
-	color: var(--accent);
-}
-p {
-	margin-bottom: 1em;
-	font-weight: 500;
-}
-.prose p {
-	margin-bottom: 2em;
-	font-weight: 500;
-}
-textarea {
-	width: 100%;
-	font-size: 16px;
-}
-input {
-	font-size: 16px;
-}
-table {
-	width: 100%;
-}
+
+h1 { font-size: 3.2em; font-weight: 800; }
+h2 { font-size: 2.6em; font-weight: 700; }
+h3 { font-size: 2.1em; font-weight: 600; }
+h4 { font-size: 1.7em; font-weight: 600; }
+h5 { font-size: 1.4em; font-weight: 600; }
+
+strong, b { font-weight: 700; }
+a { color: var(--accent); }
+a:hover { color: var(--accent); }
+p { margin-bottom: 1em; font-weight: 500; }
+
+textarea { width: 100%; font-size: 16px; }
+input { font-size: 16px; }
+table { width: 100%; }
+
 img {
 	max-width: 100%;
 	height: auto;
 	border-radius: 8px;
 }
+
 code {
 	padding: 2px 5px;
-	background-color: rgb(var(--gray-light));
+	background-color: var(--gray-light);
 	border-radius: 2px;
 	font-family: var(--font-code);
 	font-size: 0.9em;
 }
+
 pre {
 	padding: 1.5em;
 	border-radius: 8px;
 	font-family: var(--font-code);
 }
+
 pre > code {
 	all: unset;
 	font-family: var(--font-code);
 }
+
 blockquote {
 	border-left: 4px solid var(--accent);
 	padding: 0 0 0 20px;
 	margin: 0px;
 	font-size: 1.333em;
 }
+
 hr {
 	border: none;
-	border-top: 1px solid rgb(var(--gray-light));
+	border-top: 1px solid var(--gray-light);
 }
+
 @media (max-width: 720px) {
-	body {
-		font-size: 19px;
-	}
-	main {
-		padding: 1em;
-	}
+	body { font-size: 19px; }
+	main { padding: 1em; }
 }
 
 .sr-only {
@@ -169,74 +116,8 @@ hr {
 	height: 1px;
 	width: 1px;
 	overflow: hidden;
-	/* IE6, IE7 - a 0 height clip, off to the bottom right of the visible 1px box */
 	clip: rect(1px 1px 1px 1px);
-	/* maybe deprecated but we need to support legacy browsers */
 	clip: rect(1px, 1px, 1px, 1px);
-	/* modern browsers, clip-path works inwards from each corner */
 	clip-path: inset(50%);
-	/* added line to stop words getting smushed together (as they go onto separate lines and some screen readers do not understand line feeds as a space */
 	white-space: nowrap;
-}
-
-/* CV Specific Styles */
-.hero {
-	text-align: center;
-	margin-bottom: 3rem;
-	padding: 2rem 0;
-}
-
-.hero h1 {
-	margin-bottom: 0.5rem;
-	font-size: 3.5rem;
-}
-
-.hero .tagline {
-	font-size: 1.5rem;
-	color: var(--accent);
-	margin-bottom: 2rem;
-}
-
-.about-summary, .skills, .projects-preview, .contact {
-	margin-bottom: 3rem;
-}
-
-.skills-container {
-	display: grid;
-	grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-	gap: 1.5rem;
-}
-
-.skill-category {
-	background-color: rgba(var(--gray-light), 0.7);
-	padding: 1rem;
-	border-radius: 8px;
-}
-
-.skill-category h3 {
-	color: var(--accent-dark);
-	margin-bottom: 0.75rem;
-	font-size: 1.2rem;
-	letter-spacing: -0.01em;
-}
-
-.skill-category ul {
-	padding-left: 1.2rem;
-	margin: 0;
-}
-
-.skill-category li {
-	margin-bottom: 0.3rem;
-	font-family: var(--font-code);
-	font-size: 0.95rem;
-}
-
-.experience-item, .education-item {
-	margin-bottom: 2rem;
-}
-
-.experience-meta, .education-meta {
-	font-style: italic;
-	margin-top: -0.5rem;
-	color: #666;
 }
