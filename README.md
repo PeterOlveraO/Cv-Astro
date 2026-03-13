@@ -2,8 +2,6 @@
 
 Portafolio profesional y currículum en línea construido con [Astro](https://astro.build), diseñado para mostrar experiencia, proyectos, diplomas y habilidades de manera elegante y eficiente.
 
-![Vista previa del portafolio](public/profile-photo.webp)
-
 ## ✨ Características
 
 - Diseño moderno y responsivo
